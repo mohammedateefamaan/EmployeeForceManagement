@@ -1,0 +1,30 @@
+<p>employee works!</p>
+
+
+<h2>All Employees</h2>
+<ul>
+  <li *ngFor="let emp of employees">
+    <strong>{{ emp.employeeName }}</strong> - {{ emp.empDepartment }}
+    <button (click)="getEmployeeDetails(emp.employeeId!)">Details</button>
+    <button (click)="deleteEmployee(emp.employeeId!)">Delete</button>
+  </li>
+</ul>
+
+<div *ngIf="selectedEmployee">
+  <h3>Employee Details</h3>
+  <p>ID: {{ selectedEmployee.employeeId }}</p>
+  <p>Name: {{ selectedEmployee.employeeName }}</p>
+  <p>Department: {{ selectedEmployee.empDepartment }}</p>
+  <p>Salary: {{ selectedEmployee.empSalary }}</p>
+  <img [src]="selectedEmployee.empImage" alt="Image" width="100" />
+</div>
+
+<h2>Add Employee</h2>
+<form (ngSubmit)="addEmployee()">
+  <input [(ngModel)]="newEmployee.employeeId" name="id" placeholder="ID" required />
+  <input [(ngModel)]="newEmployee.employeeName" name="name" placeholder="Name" required />
+  <input [(ngModel)]="newEmployee.empDepartment" name="dept" placeholder="Department" required />
+  <input [(ngModel)]="newEmployee.empSalary" name="salary" placeholder="Salary" required />
+  <input [(ngModel)]="newEmployee.empImage" name="image" placeholder="Image URL" />
+  <button type="submit">Add</button>
+</form>
